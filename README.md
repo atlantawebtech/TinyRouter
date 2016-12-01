@@ -49,6 +49,11 @@ $router->post('/api', function($argv) {
     echo json_encode(array('hello' => 'world'));
 });
 ```
+
+Routes can optionally have a 'token' appended to them in this format ```{token}```. You can name the token anything you would like such as ```{id}``` or ```{name}```. Only one token is permitted in each route name and it must be the last part of the route name.
+
+**Note: All HTTP requests are automatically redirected to the equivalent request URI with a trailing forward slash.**
+
 ### Helper Methods
 There are a few public methods that are available to you within your route definition. The Closures state is bound to the Router instance which means you can access the methods via the $this keyword. 
 
