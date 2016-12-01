@@ -20,7 +20,24 @@ $router->get('/hello/{name}', function($argv) {
 
 $router->run();
 ```
-## Contributing
 
+### Defining Routes
+There are two types of routes you can define, **GET** routes and **POST** routes.
+
+**GET Route**
+```php
+$router = new TinyRouter\Router();
+$router->get('/hello/{name}', function($argv) {
+    echo 'Hello '.$argv['name'];
+});
+```
+**POST Route**
+```php
+$router = new TinyRouter\Router();
+$router->post('/api', function($argv) {
+    $this->setHeader('Content-Type', 'application/json');
+    echo json_encode(array('hello' => 'world'));
+});
+```
 ## Credits
-Inspiration from the way the router is used in the [Slim framework](https://www.slimframework.com/).
+Syntax inspiration from the [Slim framework](https://www.slimframework.com/).
