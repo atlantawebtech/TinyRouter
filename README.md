@@ -34,6 +34,8 @@ $router->run();
 ### Defining Routes
 There are two types of routes you can define, **GET** routes and **POST** routes.
 
+**Note: GET routes also respond to the corresponding HEAD request. Currently you can not explicitly set a HEAD route.**
+
 **GET Route**
 ```php
 $router = new TinyRouter\Router();
