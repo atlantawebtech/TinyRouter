@@ -39,5 +39,8 @@ $router->post('/api', function($argv) {
     echo json_encode(array('hello' => 'world'));
 });
 ```
+### Helper Methods
+There are a few public methods that are available to you within your route definition. The Closures state is bound to the Router instance which means you can access the methods via the $this keyword. 
+
 ## Credits
 Syntax inspiration from the [Slim framework](https://www.slimframework.com/).
