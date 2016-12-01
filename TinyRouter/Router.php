@@ -35,7 +35,7 @@ class Router
 		$this->request_uri    = rtrim(strtok($_SERVER['REQUEST_URI'], '?'), '/');
 		$this->request_method = $_SERVER['REQUEST_METHOD']; 
 		$this->setBaseAndTokenPath();
-    }
+    } 
 
     // redirects $request_uri to equivelent uri with a trailing slash
     protected function redirectToTrailingSlash()
