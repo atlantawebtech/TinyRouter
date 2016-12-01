@@ -52,6 +52,8 @@ $router->post('/api', function($argv) {
 ### Helper Methods
 There are a few public methods that are available to you within your route definition. The Closures state is bound to the Router instance which means you can access the methods via the $this keyword. 
 
+---
+
 ```
 notFoundHandler()
 ```
@@ -59,10 +61,12 @@ notFoundHandler()
 notFoundHandler() is invoked when the user tries to access an undefined route.
 Which in turn is a 404 error. You can also call this method yourself within your route. There is a default 404 page with the router but you can set a custom not found handler if you would like with the next method.
 
+---
+
 ```
 setCustomNotFoundHandler(callable $callback)
 ```
-setCustomNotFoundHandler(callable $callback) is used in an example below. 
+This method overrides the default not found handler with a closure you define.
 
 **Note: The Status-Line header is automatically set for you even in custom not found handlers.**
 ```php
@@ -71,5 +75,29 @@ $router->setCustomNotFoundHandler(function() {
     echo 'Oops, 404 Not Found';
 });
 ```
+
+---
+
+```
+redirect(string $location)
+```
+Sets the HTTP Location header to the string you specify.
+
+---
+
+```
+setHeader(string $header, string $value)
+```
+Sets an the HTTP header you specify to the value you pass. Example usage shown below.
+
+```php
+$router = new TinyRouter\Router();
+$router->post('/api/{data}', function($argv) {
+    $this->setHeader('Content-Type', 'application/json');
+    echo json_encode(array('value' => $argv['data']));
+});
+```
+
+---
 ## Credits
 Syntax inspiration from the [Slim framework](https://www.slimframework.com/).
