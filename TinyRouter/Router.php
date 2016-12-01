@@ -1,6 +1,8 @@
 <?php
 namespace TinyRouter;
 
+use Closure;
+
 class Router
 {
 	// configurations
@@ -12,7 +14,7 @@ class Router
 	// GET routes
 	protected $get_routes  = array();
 
-	// POST routes
+    // POST routes
 	protected $post_routes = array();
 
     // the http request uri
@@ -52,7 +54,7 @@ class Router
 	{
 		$token     = $this->getRouteTokenName($route);
 		$base_path = $this->stripRouteToken($route);
-		$callback  = \Closure::bind($callback, $this); 
+		$callback  = Closure::bind($callback, $this); 
         $this->get_routes[$base_path] = array('callback' => $callback, 'route' => $route, 'token' => $token);
 	}
 
@@ -61,7 +63,7 @@ class Router
 	{
 		$token     = $this->getRouteTokenName($route);
 		$base_path = $this->stripRouteToken($route);
-		$callback  = \Closure::bind($callback, $this); 
+		$callback  = Closure::bind($callback, $this); 
 		$this->post_routes[$base_path] = array('callback' => $callback, 'route' => $route, 'token' => $token);
 	}
 	
