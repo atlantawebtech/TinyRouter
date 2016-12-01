@@ -83,6 +83,18 @@ redirect(string $location)
 ```
 Sets the HTTP Location header to the string you specify.
 
+```php
+$router = new TinyRouter\Router();
+$router->get('/users/{id}', function($argv) {
+    $user_ids = array(1, 5, 10);
+    // redirect to homepage if id doesn't match a user
+    if ( ! in_array($argv['id'], $user_ids) ) {
+        return $this->redirect('/');
+    }
+    // show user profile if id exists
+});
+```
+
 ---
 
 ```
