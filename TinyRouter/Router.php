@@ -29,12 +29,27 @@ class Router
     // value of the token based on the $request_uri
     protected $token_path;
 
-    public function __construct()
+    public function __construct(array $container = array())
     {
+        if ( ! empty($container) ) {
+            $this->setContainer($container);
+        }
         $this->redirectToTrailingSlash();
         $this->request_uri    = rtrim(strtok($_SERVER['REQUEST_URI'], '?'), '/');
         $this->request_method = $_SERVER['REQUEST_METHOD']; 
         $this->setBaseAndTokenPath();
+    }
+
+    // set up dependencies
+    protected function setContainer(array $container)
+    {
+        foreach ($container as $key => $value) {
+            // if a method or property with the same name exists continue
+            if (method_exists($this, $key) || property_exists($this, $key)) {
+                continue;
+            }
+            $this->$key = $value;
+        }
     }
 
     // redirects $request_uri to equivelent uri with a trailing slash
@@ -70,6 +85,7 @@ class Router
     // sets the not found handler to a custom callback
     public function setCustomNotFoundHandler(callable $callback)
     {
+        $callback = Closure::bind($callback, $this); 
         $this->configuration['customNotFoundHandler'] = $callback;	
     }
 
