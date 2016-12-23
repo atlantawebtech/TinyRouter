@@ -1,6 +1,6 @@
 # TinyRouter
 
-TinyRouter is a very small but powerful PHP class that routes HTTP requests based on the request URI to an anonymous function that you define.  
+TinyRouter is a very small but powerful PHP class that routes HTTP requests based on the request URI to an anonymous function that you define. The goal of TinyRouter is to be a fully functional micro-framework contained in a single well defined class that requires no dependencies.
 
 ## Installation
 Download the source and place it in your web root. Composer install coming soon.
