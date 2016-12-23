@@ -118,5 +118,27 @@ $router->post('/api/{data}', function($argv) {
 ```
 
 ---
+
+### Dependency Injection Container
+TinyRouter has a built in dependency injection container. If you are unaware of what dependency injection is you can learn about it [here](http://www.phptherightway.com/#dependency_injection).
+
+What this means is that you can pass in dependencies for you project (such as a view controller object) into TinyRouter and access them via the $this keyword. TinyRouter sets any dependencies you pass in as member variables of your TinyRouter instance.
+
+Injecting and using your dependencies
+```php
+// dependencies
+$container                   = array();
+$container['viewController'] = new ViewController();
+
+// instantiate TinyRouter and pass in $container
+$router = new TinyRouter\Router($container);
+
+// use dependency in route
+$router->post('/hello/world', function($argv) {
+    $this->viewController->displayPage();
+});
+```
+
+---
 ## Credits
 Syntax inspiration from the [Slim framework](https://www.slimframework.com/).
