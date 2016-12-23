@@ -1,6 +1,6 @@
 # TinyRouter
 
-TinyRouter is a very small but powerful PHP class that routes HTTP requests based on the request URI to an anonymous function that you define.  
+TinyRouter is a very small but powerful PHP class that routes HTTP requests based on the request URI to an anonymous function that you define. The goal of TinyRouter is to be a fully functional micro-framework contained in a single well defined class that requires no dependencies.
 
 ## Installation
 Download the source and place it in your web root. Composer install coming soon.
@@ -114,6 +114,28 @@ $router = new TinyRouter\Router();
 $router->post('/api/{data}', function($argv) {
     $this->setHeader('Content-Type', 'application/json');
     echo json_encode(array('value' => $argv['data']));
+});
+```
+
+---
+
+### Dependency Injection Container
+TinyRouter has a built in dependency injection container. If you are unaware of what dependency injection is you can learn about it [here](http://www.phptherightway.com/#dependency_injection).
+
+What this means is that you can pass in dependencies for you project (such as a view controller object) into TinyRouter and access them via the $this keyword. TinyRouter sets any dependencies you pass in as member variables of your TinyRouter instance.
+
+Injecting and using your dependencies
+```php
+// dependencies
+$container                   = array();
+$container['viewController'] = new ViewController();
+
+// instantiate TinyRouter and pass in $container
+$router = new TinyRouter\Router($container);
+
+// use dependency in route
+$router->post('/hello/world', function($argv) {
+    $this->viewController->displayPage();
 });
 ```
 
