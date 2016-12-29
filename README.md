@@ -52,7 +52,15 @@ $router->post('/api', function($argv) {
 });
 ```
 
-Routes can optionally have a 'token' appended to them in this format ```{token}```. You can name the token anything you would like such as ```{id}``` or ```{name}```. Only one token is permitted in each route name and it must be the last part of the route name.
+Routes can optionally have 'tokens' appended to them in this format ```{token}```. You can name the token anything you would like such as ```{id}``` or ```{name}``` The tokens MUST be the last part of the route name.
+**Route with multiple tokens**
+```php
+$router = new TinyRouter\Router();
+$router->get('/category/{name}/{id}', function($argv) {
+    echo $argv['name'];
+    echo $argv['id'];
+});
+```
 
 **Note: All HTTP requests are automatically redirected to the equivalent request URI with a trailing forward slash.**
 
