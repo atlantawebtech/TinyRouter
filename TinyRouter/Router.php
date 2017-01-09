@@ -1,6 +1,7 @@
 <?php
 /* TinyRouter version 2.0.0
 ** https://github.com/phptiny/TinyRouter
+** Author: Cody Uptain 
 */
 namespace TinyRouter;
 
